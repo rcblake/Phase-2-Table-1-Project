@@ -15,8 +15,8 @@ function GameCard({ game }) {
         {getPlatforms}
       </h2>
       <h1>{game.name}</h1>
-      {getPlatforms(game.platforms)}
       <img src={game.background_image} alt={game.name} />
+      {getPlatforms(game.platforms)}
     </div>
   );
 }

@@ -1,32 +1,22 @@
-import { useEffect } from "react";
-import logo from "./logo.svg";
+import { useState, useEffect } from "react";
 import "./App.css";
 import gameKey from "./gameKey";
+import GameCard from "./GameCard";
 
 function App() {
+  const [gameArray, setGameArray] = useState([]);
+
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${gameKey}`)
-    .then((r) => r.json())
-    .then((r) => console.log(r))
-  }, [])
-    
+      .then((r) => r.json())
+      .then((r) => setGameArray(r.results));
+  }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {gameArray.map((game) => (
+        <GameCard key={game.id} game={game} />
+      ))}
     </div>
   );
 }
