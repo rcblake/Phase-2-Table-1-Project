@@ -1,7 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import gameKey from "./gameKey";
 
 function App() {
+  useEffect(() => {
+    fetch(`https://api.rawg.io/api/games?key=${gameKey}`)
+    .then((r) => r.json())
+    .then((r) => console.log(r))
+  }, [])
+    
+
   return (
     <div className="App">
       <header className="App-header">
