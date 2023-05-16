@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function getPlatforms(platforms) {
   return platforms.map((platform) => (
     <p key={platform.platform.id}>{platform.platform.name}</p>
@@ -15,6 +16,7 @@ function GameCard({ game }) {
       <p>Released: {game.released}</p>
       <img src={game.background_image} alt={game.name} />
       {getPlatforms(game.platforms)}
+
     </div>
   );
 }
