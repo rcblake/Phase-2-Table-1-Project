@@ -6,21 +6,15 @@ function getPlatforms(platforms) {
   ));
 }
 
-function getRatings(ratings) {
-  return ratings.map((rating) => (
-    <p key={rating.id}>{rating.title}</p>
-  ));
-}
+
 
 function GameCard({ game }) {
-  console.log(game.ratings);
-
   return (
     <div className="card">
       <h1>{game.name}</h1>
+      <p>Released: {game.released}</p>
       <img src={game.background_image} alt={game.name} />
       {getPlatforms(game.platforms)}
-      {getRatings(game.ratings)}
     </div>
   );
 }
