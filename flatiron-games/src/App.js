@@ -10,9 +10,10 @@ function App() {
   const [games, setGames] = useState([]);
   // const [page, setPage] = useState("/home");
   const [detailGame, setDetailGame] = useState({});
+  // const [pageNumber, setPageNumber] =useState("1")
 
   useEffect(() => {
-    fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
+    fetch(`https://api.rawg.io/api/games?&page_size=40&key=${APIKey}`)
       .then((r) => r.json())
       .then((r) => {
         setGames(r.results);
@@ -35,7 +36,7 @@ function App() {
           <Header />
         </div>
         <div class="fullpage-content">
-          {detailGame ? (
+          {detailGame !== {} ? (
             <Home games={games} handleDetailClick={handleDetailClick} />
           ) : (
             <DetailModal
