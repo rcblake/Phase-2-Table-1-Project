@@ -16,7 +16,6 @@ body {
   
 }
 
-
 /* Stolen from Plantsy for initial setup and testing */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -25,17 +24,18 @@ code {
 
 .cards {
   list-style: row;
-
-
 }
 
 .card {
   margin: 1rem;
   background-color: antiquewhite;
-  
-
-  
-}
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* Align items horizontally to the center */
+  align-items: center;
+  /* Align items vertically to the center */
+  }
 
 .card img {
   width: 100%;
@@ -69,9 +69,5 @@ code {
     width: calc(20% - 2rem);
   }
 }
-.card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Align items horizontally to the center */
-  align-items: center; /* Align items vertically to the center */
-}
+
+ 

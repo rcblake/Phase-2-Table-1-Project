@@ -1,14 +1,15 @@
-
-function Header(){
-    return (
-   <header>
-    <h1>
-       WELCOME TO OUR WEBSITE TEST 
-    </h1>
-   </header>
-    )
+function Header() {
+  return (
+    <div>
+      <div id="siteTitle">
+        <h1>Flatiron Games</h1>
+      </div>
+      <div id="userHeading">
+        <h3>Login/Greeting</h3>
+        <img src="" alt="" />
+      </div>
+    </div>
+  );
 }
 
-
-
-export default Header
+export default Header;
