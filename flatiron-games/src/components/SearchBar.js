@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import gameKey from "../APIKey";
-import GameCard from "./GameCard";
 
-const SearchBar = ({ setGames }) => { // Update the prop name to setGames
+import SearchResults from "./SearchResults";
+
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [game, setGame] = useState(null);
+  const [games, setGames] = useState([]);
 
   const handleSearch = async () => {
     try {
@@ -13,9 +14,9 @@ const SearchBar = ({ setGames }) => { // Update the prop name to setGames
       );
       const data = await response.json();
       if (data.results.length > 0) {
-        setGames(data.results); // Update the state using setGames function
+        setGames(data.results);
       } else {
-        setGames([]); // If no results found, set games state to an empty array
+        setGames([]);
       }
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -32,8 +33,8 @@ const SearchBar = ({ setGames }) => { // Update the prop name to setGames
   };
 
   const renderGameCard = () => {
-    if (game) {
-      return <GameCard game={game} />;
+    if (games.length > 0) {
+      return <SearchResults games={games} />;
     }
     return null;
   };
@@ -55,3 +56,4 @@ const SearchBar = ({ setGames }) => { // Update the prop name to setGames
 };
 
 export default SearchBar;
+

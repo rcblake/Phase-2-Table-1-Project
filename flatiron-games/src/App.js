@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import DetailModal from "./components/DetailModal";
 import SearchBar from "./components/SearchBar";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const [games, setGames] = useState([]);
@@ -60,7 +61,7 @@ function App() {
 
           )}
 
-          {/* add search result component here*/}
+          <SearchResults games= {games}/>
         </div>
       </div>
     </div>
