@@ -13,7 +13,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(235, 166, 166);
+  display:flex;
   
+}
+
+
+
+#navBar {
+  width: 15%;
+}
+
+#gamesContainter {
+  width: 82%
 }
 
 /* Stolen from Plantsy for initial setup and testing */

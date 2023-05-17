@@ -6,7 +6,6 @@ function GameCard({ game }) {
       <h1>{game.name}</h1>
       <p>Released: {game.released}</p>
       <img src={game.background_image} alt={game.name} />
-      {game.platform}
     </div>
   );
 }
