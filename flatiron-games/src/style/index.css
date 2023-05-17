@@ -1,84 +1,97 @@
 
-
-
-Header {
-  background-color: rgb(42, 43, 43);
-  padding: 5%;
-}
 body {
-  margin: auto;
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(235, 166, 166);
   display:flex;
   
 }
 
 
-
-#navBar {
-  width: 15%;
-}
-
-#gamesContainter {
-  width: 82%
-}
-
-/* Stolen from Plantsy for initial setup and testing */
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+}
+
 .cards {
   list-style: row;
+  flex-wrap: wrap;
+  display: flex;
 }
 
 .card {
   margin: 1rem;
   background-color: antiquewhite;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  /* Align items horizontally to the center */
-  align-items: center;
-  /* Align items vertically to the center */
+  flex-direction: column;
+  width: calc(20% - 2rem);
   }
 
 .card img {
   width: 100%;
-}
+} 
 
 .card button {
-  margin-top: 0.5rem;
+  bottom: 0
 }
 
-@media (min-width: 768px) {
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-  
-  }
-
-  .card {
-    width: calc(33% - 2rem);
-
-  }
+.app {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  width: 100%;
 }
 
-@media (min-width: 1024px) {
-  .card {
-    width: calc(25% - 2rem);
-  }
+.fullpage-left {
+  min-height: 100vh;
+  height: 100%;
+  width:200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: red;
 }
 
-@media (min-width: 1200px) {
-  .card {
-    width: calc(20% - 2rem);
-  }
+.fullpage-right{
+  flex-grow:1;
+  display:flex;
+  flex-direction: column;
+  height: 100vh;
 }
+
+.fullpage-header{
+  min-height: 100px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: blue;
+}
+
+.fullpage-content {
+  flex-grow: 1;
+  height: 100%;
+  background-color: yellow;
+
+}
+
+.navBar {
+  position:sticky;
+  position:-webkit-sticky;
+  top: 0
+}
+
+
+
+
+
+
+
 
  
