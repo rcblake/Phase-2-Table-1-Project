@@ -8,33 +8,43 @@ import DetailModal from "./components/DetailModal";
 
 function App() {
   const [games, setGames] = useState([]);
-  // const [page, setPage] = useState("/home");
+  const [searchTerm, setSearchTerm] = useState("");
   const [detailGame, setDetailGame] = useState({});
 
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
       .then((r) => r.json())
       .then((r) => {
-        setGames(r.results);
+        const filteredGames = r.results.filter((game) =>
+          game.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setGames(filteredGames);
       });
-  }, []);
+  }, [searchTerm]); // Include searchTerm as a dependency
 
   const handleDetailClick = (detGame) => {
+    console.log(detGame); // Console log the details
     setDetailGame(detGame);
   };
 
   const handleDetailClose = () => setDetailGame({});
-  console.log(detailGame);
+
   return (
-    <div class="app">
-      <div class="fullpage-left">
+    <div className="app"> {/* Replace class with className */}
+      <div className="fullpage-left"> {/* Replace class with className */}
+        <input
+          type="text"
+          placeholder="Search games"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <NavBar />
       </div>
-      <div class="fullpage-right">
-        <div class="fullpage-header">
+      <div className="fullpage-right"> {/* Replace class with className */}
+        <div className="fullpage-header"> {/* Replace class with className */}
           <Header />
         </div>
-        <div class="fullpage-content">
+        <div className="fullpage-content"> {/* Replace class with className */}
           {detailGame ? (
             <Home games={games} handleDetailClick={handleDetailClick} />
           ) : (
