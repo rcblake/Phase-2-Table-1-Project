@@ -1,6 +1,7 @@
 import React from "react";
 
-function GameCard({ game, handleDetailClick }) {
+function GameCard({ game, handleDetailClick}) {
+
   return (
     <div class="card">
       <h1>{game.name}</h1>
@@ -9,6 +10,8 @@ function GameCard({ game, handleDetailClick }) {
       {game.parent_platforms.map((platform) => (
         <p>{platform.platform.name}</p>
       ))}
+      <p>{game.rating}/{game.rating_top}</p>
+      <button>Add Rating</button>
       <button onClick={() => handleDetailClick(game)} class="detailButton">
         Details
       </button>
