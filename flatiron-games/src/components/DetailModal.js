@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function DetailPage({ game }) {
+function DetailPage({ game, handleDetailClose }) {
   const [detailImage, setDetailImage] = useState(game.background_image);
 
   const handleDetailImg = (e) => {
@@ -31,14 +31,15 @@ function DetailPage({ game }) {
           alt="gameplay screenshot"
           onClick={handleDetailImg}
         />
-        {game.short_screenshots.map((screenshot) => (
+        {/* {game.short_screenshots.map((screenshot) => (
           <img
             src={screenshot.image}
             alt="gameplay screenshot"
             onClick={handleDetailImg}
           />
-        ))}
+        ))} */}
       </div>
+      <button>close</button>
     </div>
   );
 }
