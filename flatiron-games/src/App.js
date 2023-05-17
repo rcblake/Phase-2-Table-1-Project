@@ -5,54 +5,62 @@ import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import DetailModal from "./components/DetailModal";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const [games, setGames] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [detailGame, setDetailGame] = useState({});
+  const [detailGame, setDetailGame] = useState(null);
 
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
-      .then((r) => r.json())
-      .then((r) => {
-        const filteredGames = r.results.filter((game) =>
+      .then((response) => response.json())
+      .then((data) => {
+        const filteredGames = data.results.filter((game) =>
           game.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setGames(filteredGames);
+      })
+      .catch((error) => {
+        console.error("Error fetching games:", error);
       });
-  }, [searchTerm]); // Include searchTerm as a dependency
+  }, [searchTerm]);
 
   const handleDetailClick = (detGame) => {
-    console.log(detGame); // Console log the details
+    console.log(detGame);
     setDetailGame(detGame);
   };
 
-  const handleDetailClose = () => setDetailGame({});
+  const handleDetailClose = () => {
+    setDetailGame(null);
+  };
 
   return (
-    <div className="app"> {/* Replace class with className */}
-      <div className="fullpage-left"> {/* Replace class with className */}
-        <input
-          type="text"
-          placeholder="Search games"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+    <div className="app">
+      <div className="fullpage-left">
+        <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          setGames={setGames} // Pass setGames as a prop
         />
         <NavBar />
       </div>
-      <div className="fullpage-right"> {/* Replace class with className */}
-        <div className="fullpage-header"> {/* Replace class with className */}
+      <div className="fullpage-right">
+        <div className="fullpage-header">
           <Header />
         </div>
-        <div className="fullpage-content"> {/* Replace class with className */}
+        <div className="fullpage-content">
           {detailGame ? (
-            <Home games={games} handleDetailClick={handleDetailClick} />
-          ) : (
             <DetailModal
               handleDetailClose={handleDetailClose}
               game={detailGame}
             />
+          ) : (
+            <Home games={games} handleDetailClick={handleDetailClick} />
+
           )}
+
+          {/* add search result component here*/}
         </div>
       </div>
     </div>
