@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import DetailModal from "./components/DetailModal";
+import SearchBar from "./components/SearchBar"; // Import the SearchBar component
 
 function App() {
   const [games, setGames] = useState([]);
@@ -20,31 +21,26 @@ function App() {
         );
         setGames(filteredGames);
       });
-  }, [searchTerm]); // Include searchTerm as a dependency
+  }, [searchTerm]);
 
   const handleDetailClick = (detGame) => {
-    console.log(detGame); // Console log the details
+    console.log(detGame);
     setDetailGame(detGame);
   };
 
   const handleDetailClose = () => setDetailGame({});
 
   return (
-    <div className="app"> {/* Replace class with className */}
-      <div className="fullpage-left"> {/* Replace class with className */}
-        <input
-          type="text"
-          placeholder="Search games"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+    <div className="app">
+      <div className="fullpage-left">
+        <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <NavBar />
       </div>
-      <div className="fullpage-right"> {/* Replace class with className */}
-        <div className="fullpage-header"> {/* Replace class with className */}
+      <div className="fullpage-right">
+        <div className="fullpage-header">
           <Header />
         </div>
-        <div className="fullpage-content"> {/* Replace class with className */}
+        <div className="fullpage-content">
           {detailGame ? (
             <Home games={games} handleDetailClick={handleDetailClick} />
           ) : (
