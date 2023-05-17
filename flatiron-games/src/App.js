@@ -36,14 +36,14 @@ function App() {
           <Header />
         </div>
         <div class="fullpage-content">
-          {detailGame !== {} ? (
-            <Home games={games} handleDetailClick={handleDetailClick} />
-          ) : (
+          {/* {detailGame !== {} ? ( */}
+          <Home games={games} handleDetailClick={handleDetailClick} />
+          {/* ) : (
             <DetailModal
               handleDetailClose={handleDetailClose}
               game={detailGame}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>
