@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./style/App.css";
@@ -11,13 +10,11 @@ import SearchResults from "./components/SearchResults";
 import Platform from "./components/Platform";
 // import DetailModal from "./components/DetailModal";
 
-
-
 function App() {
   const [games, setGames] = useState([]);
-  const [detailGame, setDetailGame] = useState(null);
+  // const [detailGame, setDetailGame] = useState(null);
   const [searchedGames, setSearchedGames] = useState([]);
-    const [currentPlatformGames, setCurrentPlatformGames] = useState([]);
+  const [currentPlatformGames, setCurrentPlatformGames] = useState([]);
   const [currentPlatform, setCurrentPlatform] = useState("");
 
   useEffect(() => {
@@ -42,15 +39,16 @@ function App() {
       console.error("Error fetching search results:", error);
     }
   };
-// Detail not active
-//   const handleDetailClick = (detGame) => {
-//     console.log(detGame);
-//     setDetailGame(detGame);
-//   };
 
-//   const handleDetailClose = () => {
-//     setDetailGame(null);
-//   };
+  // Detail not active
+  //   const handleDetailClick = (detGame) => {
+  //     console.log(detGame);
+  //     setDetailGame(detGame);
+  //   };
+
+  //   const handleDetailClose = () => {
+  //     setDetailGame(null);
+  //   };
 
   const onNavLinkClick = (navName, navID) => {
     setCurrentPlatform(navName);
@@ -61,24 +59,27 @@ function App() {
       .then((res) => setCurrentPlatformGames(res.results));
   };
 
-   return (
+  return (
     <div className="app">
       <div className="fullpage-left">
-        <SearchBar handleSearch={handleSearch} games={games} />
-        <NavBar />
-
+        <div className="sidePanel">
+          <SearchBar handleSearch={handleSearch} games={games} />
+          <NavBar onNavLinkClick={onNavLinkClick} />
+        </div>
       </div>
       <div className="fullpage-right">
         <div className="fullpage-header">
           <Header />
         </div>
 
-        <div class="fullpage-content">
-
+        <div className="fullpage-content">
           <Routes>
             <Route path="/home" element={<Home games={games} />} />
-            {/* <Route path="/search" element={<Search />} />
-               needs to be changed to what Cody named it */}
+            <Route
+              path="/search_results"
+              element={<SearchResults games={searchedGames} />}
+            />
+
             <Route
               path=":currentPlatform"
               element={
@@ -89,8 +90,6 @@ function App() {
               }
             />
           </Routes>
-
-
         </div>
       </div>
     </div>

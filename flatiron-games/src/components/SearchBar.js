@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ handleSearch, games }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -10,19 +11,23 @@ const SearchBar = ({ handleSearch, games }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch(searchTerm); 
+    navigate("/search_results");
+    handleSearch(searchTerm);
   };
 
   return (
-    <div>
+    <div class="searchBar">
       <form onSubmit={handleSubmit}>
         <input
+          class="searchInput"
           type="text"
           placeholder="Search games"
           value={searchTerm}
           onChange={handleChange}
         />
-        <button type="submit">Search</button>
+        <button class="searchButton" type="submit">
+          🔍
+        </button>
       </form>
     </div>
   );

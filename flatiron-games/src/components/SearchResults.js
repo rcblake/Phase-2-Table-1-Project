@@ -2,21 +2,18 @@ import React from "react";
 import GameCard from "./GameCard";
 
 const SearchResults = ({ games }) => {
-  const renderGameCard = () => {
-    if (games.length > 0) {
-      return (
-        <div>
-          <h2>Search Results</h2>
+  return (
+    <div>
+      <h2>Search Results</h2>
+      <div className="fullGameList">
+        <div className="cards">
           {games.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
-      );
-    }
-    return null;
-  };
-
-  return renderGameCard();
+      </div>
+    </div>
+  );
 };
 
 export default SearchResults;
