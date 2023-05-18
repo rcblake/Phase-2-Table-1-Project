@@ -13,7 +13,8 @@ function App() {
   const [games, setGames] = useState([]);
   const [page, setPage] = useState("/home");
   // const [detailGame, setDetailGame] = useState({});
-  const [platformGames, setPlatformGames] = useState([]);
+  const [currentPlatformGames, setCurrentPlatformGames] = useState([]);
+  const [currentPlatform, setCurrentPlatform] = useState("");
 
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
@@ -22,26 +23,20 @@ function App() {
         setGames(r.results);
       });
   }, []);
-  const handlePlatforms = () => {};
-  useEffect(() => {
+
+  const onNavLinkClick = (navName, navID) => {
+    setCurrentPlatform(navName);
     fetch(
-      `https://api.rawg.io/api/games?page_size=40&platforms=1&key=${APIKey}`
+      `https://api.rawg.io/api/games?page_size=40&platforms=${navID}&key=${APIKey}`
     )
       .then((res) => res.json())
-      .then((res) => setPlatformGames(res.results));
-  }, []);
-
-  // const handleDetailClick = (detGame) => {
-  //   setDetailGame(detGame);
-  // };
-
-  // const handleDetailClose = () => setDetailGame({});
-  // console.log(detailGame);
+      .then((res) => setCurrentPlatformGames(res.results));
+  };
 
   return (
     <div class="app">
       <div class="fullpage-left">
-        <NavBar />
+        <NavBar onNavLinkClick={onNavLinkClick} />
       </div>
       <div class="fullpage-right">
         <div class="fullpage-header">
@@ -49,21 +44,19 @@ function App() {
         </div>
         <div class="fullpage-content">
           <Routes>
-            <Route path="/home" element={<Home games={games} />}>
-            {/* <Route path="/search">
-               needs to be changed to what Cody named it
-                  <Search /> 
-               </Route> */}
-            <Route>
-              <Platform
-              // handleDetailClick={handleDetailClick}
-              />
-            </Route>
+            <Route path="/home" element={<Home games={games} />} />
+            {/* <Route path="/search" element={<Search />} />
+               needs to be changed to what Cody named it */}
+            <Route
+              path="/platform/pc"
+              element={
+                <Platform
+                  currentPlatformGames={currentPlatformGames}
+                  name={"PC"}
+                />
+              }
+            />
           </Routes>
-          <Platform
-            platformGames={platformGames}
-            // handleDetailClick={handleDetailClick}
-          />
         </div>
       </div>
     </div>

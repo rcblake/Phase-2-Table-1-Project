@@ -1,19 +1,15 @@
 import React from "react";
 import GameCard from "./GameCard";
 
-function Platform({ platformGames, handleDetailClick }) {
+function Platform({ platformGames, name }) {
   return (
     <div>
-      <h2 class="pageHeader">Xbox</h2>
+      <h2 class="pageHeader">{name}</h2>
       <div class="fullGameList">
         <h3 class="gamesHeader">All Games</h3>
         <div class="cards">
           {platformGames.map((game) => (
-            <GameCard
-              key={game.id}
-              game={game}
-              handleDetailClick={handleDetailClick}
-            />
+            <GameCard key={game.id} game={game} />
           ))}
         </div>
       </div>
