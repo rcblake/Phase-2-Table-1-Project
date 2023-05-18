@@ -1,17 +1,14 @@
 import React from "react";
 import GameCard from "./GameCard";
 
-function Home({ games, handleDetailClick }) {
+function Platform({ currentPlatformGames, currentPlatform }) {
   return (
     <div>
-      <h2 class="pageHeader">Home</h2>
-      <div class="highestRatedList">
-        <h3 class="gamesHeader">Highest Rated</h3>
-      </div>
+      <h2 class="pageHeader">{currentPlatform}</h2>
       <div class="fullGameList">
         <h3 class="gamesHeader">All Games</h3>
         <div class="cards">
-          {games.map((game) => (
+          {currentPlatformGames.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
@@ -19,4 +16,4 @@ function Home({ games, handleDetailClick }) {
     </div>
   );
 }
-export default Home;
+export default Platform;
