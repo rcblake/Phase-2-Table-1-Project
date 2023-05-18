@@ -28,8 +28,8 @@ function NavBar({ onNavLinkClick }) {
           <NavLink
             onClick={handleNavLinkClick}
             class="platformNav"
-            name="Playstation"
-            id="2"
+            name="PlayStation"
+            id="187"
             to="/playstation"
           >
             Playstation
