@@ -1,7 +1,7 @@
 import React from "react";
 import GameCard from "./GameCard";
 
-function Home({ games, handleDetailClick }) {
+function Home({ games, handleDetailClick, }) {
   return (
     <div>
       <h2 class="pageHeader">Home</h2>
