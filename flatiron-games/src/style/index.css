@@ -16,7 +16,9 @@ code {
     monospace;
 }
 
+
 p {
+  align-self: center;
   padding: 0;
   margin: 0;
   margin-left: 5px;
@@ -33,15 +35,45 @@ p {
   background-color: antiquewhite;
   display: flex;
   flex-direction: column;
-  width: calc(20% - 2rem);
-  }
+  width: 220px;
+  border-radius: 5px;
+  border: white, 20px;
+  box-shadow: inset 2px 1px 8px #ccc;
+  align-items: center;
+  
+}
 
 .card img {
-  width: 100%;
+  align-self: center;
+  width: 200px;
+  min-height: 200px;
+  height: 200px;
+  object-fit:cover;
+  background-color: black;
 } 
 
+.gameName {
+  font-size: larger;
+  align-self: center;
+  max-height: 50px;
+  object-fit: contain;
+  max-width: 200px;
+}
+ h1 {
+  text-align: center;
+ }
+
+
+h4 {
+  justify-content: center;
+  text-align: center;
+  font-size: large;
+}
+
 .card button {
-  bottom: 0
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 150px;
 }
 
 .app {
@@ -57,7 +89,6 @@ p {
   width:200px;
   flex-grow: 0;
   flex-shrink: 0;
-  background-color: red;
 }
 
 .fullpage-right{
@@ -71,22 +102,19 @@ p {
   min-height: 100px;
   flex-grow: 0;
   flex-shrink: 0;
-  background-color: blue;
 }
 
 .fullpage-content {
   flex-grow: 1;
   height: 100%;
-  background-color: yellow;
 
 }
 
-.navBar {
+.sidePanel {
   position:sticky;
   position:-webkit-sticky;
-  top: 0
+  top: 30px;
 }
-
 
 
 

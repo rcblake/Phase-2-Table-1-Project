@@ -1,13 +1,13 @@
 import React from "react";
 
 function GameCard({ game, handleDetailClick }) {
-  if (!game) {
-    return null; // Render nothing if the game is null or undefined
-  }
+  // if (!game) {
+  //   return null; // Render nothing if the game is null or undefined
+  // }
 
   return (
     <div className="card">
-      <h1>{game.name}</h1>
+      <h4 className="gameName">{game.name}</h4>
       {game.released && <p>Released: {game.released.slice(0, 4)}</p>}
       <img
         src={
@@ -16,10 +16,14 @@ function GameCard({ game, handleDetailClick }) {
         }
         alt={game.name}
       />
-      {game.parent_platforms.map((platform) => (
+      {game.parent_platforms.slice(0, 4).map((platform) => (
         <p key={platform.platform.id}>{platform.platform.name}</p>
       ))}
-      <button onClick={() => handleDetailClick(game)} className="detailButton">
+      <button
+        class="detailButton"
+        onClick={() => handleDetailClick(game)}
+        className="detailButton"
+      >
         Details
       </button>
     </div>

@@ -62,8 +62,10 @@ function App() {
   return (
     <div className="app">
       <div className="fullpage-left">
-        <SearchBar handleSearch={handleSearch} games={games} />
-        <NavBar onNavLinkClick={onNavLinkClick} />
+        <div className="sidePanel">
+          <SearchBar handleSearch={handleSearch} games={games} />
+          <NavBar onNavLinkClick={onNavLinkClick} />
+        </div>
       </div>
       <div className="fullpage-right">
         <div className="fullpage-header">
