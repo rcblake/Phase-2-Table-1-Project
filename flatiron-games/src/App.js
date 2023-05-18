@@ -36,7 +36,6 @@ function App() {
       );
       const data = await response.json();
       setIsModalVisible(false);
-
       setSearchedGames(data.results);
     } catch (error) {
       console.error("Error fetching search results:", error);
