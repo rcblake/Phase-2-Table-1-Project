@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./style/App.css";
 import APIKey from "./APIKey";
 import NavBar from "./components/NavBar";
@@ -10,22 +10,31 @@ import SearchResults from "./components/SearchResults";
 
 function App() {
   const [games, setGames] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [detailGame, setDetailGame] = useState(null);
+  const [searchedGames, setSearchedGames] = useState([]);
 
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
       .then((response) => response.json())
       .then((data) => {
-        const filteredGames = data.results.filter((game) =>
-          game.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setGames(filteredGames);
+        setGames(data.results);
       })
       .catch((error) => {
         console.error("Error fetching games:", error);
       });
-  }, [searchTerm]);
+  }, []);
+
+  const handleSearch = async (searchTerm) => {
+    try {
+      const response = await fetch(
+        `https://api.rawg.io/api/games?key=${APIKey}&search=${searchTerm}`
+      );
+      const data = await response.json();
+      setSearchedGames(data.results);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
 
   const handleDetailClick = (detGame) => {
     console.log(detGame);
@@ -39,11 +48,7 @@ function App() {
   return (
     <div className="app">
       <div className="fullpage-left">
-        <SearchBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          setGames={setGames} // Pass setGames as a prop
-        />
+        <SearchBar handleSearch={handleSearch} games={games} />
         <NavBar />
       </div>
       <div className="fullpage-right">
@@ -57,11 +62,11 @@ function App() {
               game={detailGame}
             />
           ) : (
-            <Home games={games} handleDetailClick={handleDetailClick} />
-
+            <>
+              <Home games={games} handleDetailClick={handleDetailClick} />
+              <SearchResults games={searchedGames} />
+            </>
           )}
-
-          <SearchResults games= {games}/>
         </div>
       </div>
     </div>

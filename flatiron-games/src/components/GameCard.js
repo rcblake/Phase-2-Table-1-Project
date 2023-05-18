@@ -1,6 +1,10 @@
 import React from "react";
 
 function GameCard({ game, handleDetailClick }) {
+  if (!game) {
+    return null; // Render nothing if the game is null or undefined
+  }
+
   return (
     <div className="card">
       <h1>{game.name}</h1>
