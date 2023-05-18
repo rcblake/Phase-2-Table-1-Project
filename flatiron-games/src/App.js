@@ -11,7 +11,6 @@ import Platform from "./components/Platform";
 
 function App() {
   const [games, setGames] = useState([]);
-  const [page, setPage] = useState("/home");
   // const [detailGame, setDetailGame] = useState({});
   const [currentPlatformGames, setCurrentPlatformGames] = useState([]);
   const [currentPlatform, setCurrentPlatform] = useState("");
@@ -48,11 +47,11 @@ function App() {
             {/* <Route path="/search" element={<Search />} />
                needs to be changed to what Cody named it */}
             <Route
-              path="/platform/pc"
+              path=":currentPlatform"
               element={
                 <Platform
                   currentPlatformGames={currentPlatformGames}
-                  name={"PC"}
+                  currentPlatform={currentPlatform}
                 />
               }
             />

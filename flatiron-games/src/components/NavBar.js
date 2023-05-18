@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 function NavBar({ onNavLinkClick }) {
   const handleNavLinkClick = (e) => {
     onNavLinkClick(e.target.name, e.target.id);
+    console.log(e.target);
   };
 
   return (
@@ -19,7 +20,7 @@ function NavBar({ onNavLinkClick }) {
             class="platformNav"
             name="PC"
             id="4"
-            to="/platform/pc"
+            to="/pc"
           >
             PC
           </NavLink>
@@ -29,7 +30,7 @@ function NavBar({ onNavLinkClick }) {
             class="platformNav"
             name="Playstation"
             id="2"
-            to="/platform/playstation"
+            to="/playstation"
           >
             Playstation
           </NavLink>
@@ -39,7 +40,7 @@ function NavBar({ onNavLinkClick }) {
             class="platformNav"
             name="Xbox"
             id="3"
-            to="/platform/xbox"
+            to="/xbox"
           >
             Xbox
           </NavLink>
@@ -49,7 +50,7 @@ function NavBar({ onNavLinkClick }) {
             class="platformNav"
             name="Nintendo"
             id="7"
-            to="/platform/nintendo"
+            to="/nintendo"
           >
             Nintendo
           </NavLink>
