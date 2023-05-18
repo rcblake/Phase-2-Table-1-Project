@@ -12,11 +12,7 @@ function Home({ games, handleDetailClick }) {
         <h3 class="gamesHeader">All Games</h3>
         <div class="cards">
           {games.map((game) => (
-            <GameCard
-              key={game.id}
-              game={game}
-              handleDetailClick={handleDetailClick}
-            />
+            <GameCard key={game.id} game={game} />
           ))}
         </div>
       </div>
