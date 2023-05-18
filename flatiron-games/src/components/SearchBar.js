@@ -13,19 +13,20 @@ const SearchBar = ({ handleSearch, games }) => {
     e.preventDefault();
     navigate("/search_results");
     handleSearch(searchTerm);
+    setSearchTerm("");
   };
 
   return (
-    <div class="searchBar">
+    <div className="searchBar">
       <form onSubmit={handleSubmit}>
         <input
-          class="searchInput"
+          className="searchInput"
           type="text"
           placeholder="Search games"
           value={searchTerm}
           onChange={handleChange}
         />
-        <button class="searchButton" type="submit">
+        <button className="searchButton" type="submit">
           🔍
         </button>
       </form>

@@ -8,14 +8,15 @@ import Home from "./components/Home";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Platform from "./components/Platform";
-// import DetailModal from "./components/DetailModal";
+import DetailModal from "./components/DetailModal";
 
 function App() {
   const [games, setGames] = useState([]);
-  // const [detailGame, setDetailGame] = useState(null);
   const [searchedGames, setSearchedGames] = useState([]);
   const [currentPlatformGames, setCurrentPlatformGames] = useState([]);
   const [currentPlatform, setCurrentPlatform] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalGame, setModalGame] = useState({});
 
   useEffect(() => {
     fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
@@ -40,15 +41,14 @@ function App() {
     }
   };
 
-  // Detail not active
-  //   const handleDetailClick = (detGame) => {
-  //     console.log(detGame);
-  //     setDetailGame(detGame);
-  //   };
+  const handleModalClick = (modGame) => {
+    setIsModalVisible(true);
+    setModalGame(modGame);
+  };
 
-  //   const handleDetailClose = () => {
-  //     setDetailGame(null);
-  //   };
+  const handleModalClose = () => {
+    setIsModalVisible(false);
+  };
 
   const onNavLinkClick = (navName, navID) => {
     setCurrentPlatform(navName);
@@ -58,12 +58,12 @@ function App() {
       .then((res) => res.json())
       .then((res) => setCurrentPlatformGames(res.results));
   };
-
+  console.log(modalGame);
   return (
     <div className="app">
       <div className="fullpage-left">
         <div className="sidePanel">
-          <SearchBar handleSearch={handleSearch} games={games} />
+          <SearchBar handleSearch={handleSearch} />
           <NavBar onNavLinkClick={onNavLinkClick} />
         </div>
       </div>
@@ -73,11 +73,27 @@ function App() {
         </div>
 
         <div className="fullpage-content">
+          {isModalVisible ? (
+            <DetailModal
+              modalGame={modalGame}
+              handleModalClose={handleModalClose}
+            />
+          ) : null}
           <Routes>
-            <Route path="/home" element={<Home games={games} />} />
+            <Route
+              path="/home"
+              element={
+                <Home games={games} handleModalClick={handleModalClick} />
+              }
+            />
             <Route
               path="/search_results"
-              element={<SearchResults games={searchedGames} />}
+              element={
+                <SearchResults
+                  games={searchedGames}
+                  handleModalClick={handleModalClick}
+                />
+              }
             />
 
             <Route
@@ -86,6 +102,7 @@ function App() {
                 <Platform
                   currentPlatformGames={currentPlatformGames}
                   currentPlatform={currentPlatform}
+                  handleModalClick={handleModalClick}
                 />
               }
             />

@@ -1,46 +1,40 @@
 import { useState } from "react";
 
-function DetailPage({ game, handleDetailClose }) {
-  const [detailImage, setDetailImage] = useState(game.background_image);
+function DetailModal({ modalGame, handleModalClose }) {
+  const [detailImage, setDetailImage] = useState(modalGame.background_image);
 
   const handleDetailImg = (e) => {
     setDetailImage(e.target.src);
   };
 
   return (
-    <div>
-      <div class="detailTitle">
-        <h2>{game.name}</h2>
+    <div class="modal">
+      <div className="detailTitle">
+        <h2>{modalGame.name}</h2>
       </div>
-      <div>
+      <img class="modalMainImage" src={detailImage} alt={modalGame.name} />
+      <div class="modalText">
         <h4>Genres 2 Max</h4>
         <h4>Release Year</h4>
         <h4>
-          {game.rating} / {game.rating_top}
+          {modalGame.rating} / {modalGame.rating_top}
           &#11088
         </h4>
         <h4>ESRB</h4>
+        <div>My Rating</div>
       </div>
-      <button>Add to Favorites</button>
-      <img src={detailImage} alt={game.name} />
-      <div>My Rating</div>
 
       <div>
-        <img
-          src={game.background_image}
-          alt="gameplay screenshot"
-          onClick={handleDetailImg}
-        />
-        {/* {game.short_screenshots.map((screenshot) => (
+        {modalGame.short_screenshots.map((screenshot) => (
           <img
             src={screenshot.image}
             alt="gameplay screenshot"
             onClick={handleDetailImg}
           />
-        ))} */}
+        ))}
       </div>
-      <button>close</button>
+      <button onClick={handleModalClose}>close</button>
     </div>
   );
 }
-export default DetailPage;
+export default DetailModal;

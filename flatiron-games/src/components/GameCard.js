@@ -1,10 +1,6 @@
 import React from "react";
 
-function GameCard({ game, handleDetailClick }) {
-  // if (!game) {
-  //   return null; // Render nothing if the game is null or undefined
-  // }
-
+function GameCard({ game, handleModalClick }) {
   return (
     <div className="card">
       <h4 className="gameName">{game.name}</h4>
@@ -19,11 +15,7 @@ function GameCard({ game, handleDetailClick }) {
       {game.parent_platforms.slice(0, 4).map((platform) => (
         <p key={platform.platform.id}>{platform.platform.name}</p>
       ))}
-      <button
-        class="detailButton"
-        onClick={() => handleDetailClick(game)}
-        className="detailButton"
-      >
+      <button className="detailButton" onClick={() => handleModalClick(game)}>
         Details
       </button>
     </div>
