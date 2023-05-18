@@ -1,19 +1,24 @@
 import React, {useState} from "react";
-import gameKey from "../APIKey";
 
 function GameCard({ game, handleDetailClick, handleRating}) {
 const [userRating, setUserRating] = useState(false)
 
+
 function handleRatingClick() {
-  fetch(`https://api.rawg.io/api/ratings?key=${gameKey}`, {
+  const gameRating = {id: game.id, rating: userRating}
+  fetch("http://localhost:3000", {
     method: "POST", 
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(userRating),
+    body: JSON.stringify(gameRating),
   })
   .then(r => r.json())
-  .then(userRating => setUserRating(userRating))
+  .then(userRating)
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  setUserRating((userRating) => !userRating)
 }
   return (
     <div class="card">
@@ -24,13 +29,14 @@ function handleRatingClick() {
         <p>{platform.platform.name}</p>
       ))}
       <p>{game.rating}/{game.rating_top}</p>
-      <form>
+      <p>My Rating is {userRating}</p>
+      <form onSubmit={handleSubmit}>
         <div>
-          <button newRating={userRating} onClick={handleRatingClick(userRating)}>1</button>
-          <button newRating={userRating} onClick={handleRatingClick(userRating)}>2</button>
-          <button newRating={userRating} onClick={handleRatingClick(userRating)}>3</button>
-          <button newRating={userRating} onClick={handleRatingClick(userRating)}>4</button>
-          <button newRating={userRating} onClick={handleRatingClick(userRating)}>5</button>
+          <button value="1" newRating={userRating} onClick={handleRatingClick(userRating)}>1</button>
+          <button value="2" newRating={userRating} onClick={handleRatingClick(userRating)}>2</button>
+          <button value="3" newRating={userRating} onClick={handleRatingClick(userRating)}>3</button>
+          <button value="4" newRating={userRating} onClick={handleRatingClick(userRating)}>4</button>
+          <button value="5" newRating={userRating} onClick={handleRatingClick(userRating)}>5</button>
         </div>
       </form>
       <button onClick={() => handleDetailClick(game)} class="detailButton">
