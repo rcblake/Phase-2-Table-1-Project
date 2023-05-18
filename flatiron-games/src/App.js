@@ -16,7 +16,7 @@ function App() {
   const [currentPlatform, setCurrentPlatform] = useState("");
 
   useEffect(() => {
-    fetch(`https://api.rawg.io/api/games?key=${APIKey}`)
+    fetch(`https://api.rawg.io/api/games?&page_size=40&key=${APIKey}`)
       .then((r) => r.json())
       .then((r) => {
         setGames(r.results);
@@ -42,6 +42,7 @@ function App() {
           <Header />
         </div>
         <div class="fullpage-content">
+
           <Routes>
             <Route path="/home" element={<Home games={games} />} />
             {/* <Route path="/search" element={<Search />} />
@@ -56,6 +57,7 @@ function App() {
               }
             />
           </Routes>
+
         </div>
       </div>
     </div>
