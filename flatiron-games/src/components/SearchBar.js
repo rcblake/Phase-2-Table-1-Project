@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const SearchBar = ({ handleSearch, games }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -10,7 +9,7 @@ const SearchBar = ({ handleSearch, games }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSearch(searchTerm); 
+    handleSearch(searchTerm);
   };
 
   return (

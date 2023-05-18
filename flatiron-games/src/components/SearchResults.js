@@ -2,6 +2,7 @@ import React from "react";
 import GameCard from "./GameCard";
 
 const SearchResults = ({ games }) => {
+  debugger;
   const renderGameCard = () => {
     if (games.length > 0) {
       return (

@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 function NavBar({ onNavLinkClick }) {
   const handleNavLinkClick = (e) => {
     onNavLinkClick(e.target.name, e.target.id);
-    console.log(e.target);
   };
 
   return (
