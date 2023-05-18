@@ -39,6 +39,7 @@ function App() {
       console.error("Error fetching search results:", error);
     }
   };
+
   // Detail not active
   //   const handleDetailClick = (detGame) => {
   //     console.log(detGame);
@@ -69,11 +70,11 @@ function App() {
           <Header />
         </div>
 
-        <div class="fullpage-content">
+        <div className="fullpage-content">
           <Routes>
             <Route path="/home" element={<Home games={games} />} />
             <Route
-              path="/searchresults"
+              path="/search_results"
               element={<SearchResults games={searchedGames} />}
             />
 

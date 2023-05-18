@@ -8,15 +8,15 @@ function NavBar({ onNavLinkClick }) {
 
   return (
     <>
-      <div class="navBar">
-        <NavLink onClick={handleNavLinkClick} class="homeNav" to="/home">
+      <div className="navBar">
+        <NavLink onClick={handleNavLinkClick} className="homeNav" to="/home">
           Home
         </NavLink>
         <h3>Platforms</h3>
         <ol>
           <NavLink
             onClick={handleNavLinkClick}
-            class="platformNav"
+            className="platformNav"
             name="PC"
             id="4"
             to="/pc"
@@ -26,7 +26,7 @@ function NavBar({ onNavLinkClick }) {
           <br></br>
           <NavLink
             onClick={handleNavLinkClick}
-            class="platformNav"
+            className="platformNav"
             name="PlayStation"
             id="187"
             to="/playstation"
@@ -36,7 +36,7 @@ function NavBar({ onNavLinkClick }) {
           <br></br>
           <NavLink
             onClick={handleNavLinkClick}
-            class="platformNav"
+            className="platformNav"
             name="Xbox"
             id="3"
             to="/xbox"
@@ -46,7 +46,7 @@ function NavBar({ onNavLinkClick }) {
           <br></br>
           <NavLink
             onClick={handleNavLinkClick}
-            class="platformNav"
+            className="platformNav"
             name="Nintendo"
             id="7"
             to="/nintendo"

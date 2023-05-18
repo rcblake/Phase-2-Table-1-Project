@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ handleSearch, games }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -10,6 +12,7 @@ const SearchBar = ({ handleSearch, games }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleSearch(searchTerm);
+    navigate("/search_results");
   };
 
   return (
