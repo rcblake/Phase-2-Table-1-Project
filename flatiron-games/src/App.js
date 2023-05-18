@@ -35,6 +35,8 @@ function App() {
         `https://api.rawg.io/api/games?key=${APIKey}&search=${searchTerm}`
       );
       const data = await response.json();
+      setIsModalVisible(false);
+
       setSearchedGames(data.results);
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -51,6 +53,7 @@ function App() {
   };
 
   const onNavLinkClick = (navName, navID) => {
+    setIsModalVisible(false);
     setCurrentPlatform(navName);
     fetch(
       `https://api.rawg.io/api/games?page_size=40&platforms=${navID}&key=${APIKey}`
@@ -78,35 +81,36 @@ function App() {
               modalGame={modalGame}
               handleModalClose={handleModalClose}
             />
-          ) : null}
-          <Routes>
-            <Route
-              path="/home"
-              element={
-                <Home games={games} handleModalClick={handleModalClick} />
-              }
-            />
-            <Route
-              path="/search_results"
-              element={
-                <SearchResults
-                  games={searchedGames}
-                  handleModalClick={handleModalClick}
-                />
-              }
-            />
+          ) : (
+            <Routes>
+              <Route
+                path="/home"
+                element={
+                  <Home games={games} handleModalClick={handleModalClick} />
+                }
+              />
+              <Route
+                path="/search_results"
+                element={
+                  <SearchResults
+                    games={searchedGames}
+                    handleModalClick={handleModalClick}
+                  />
+                }
+              />
 
-            <Route
-              path=":currentPlatform"
-              element={
-                <Platform
-                  currentPlatformGames={currentPlatformGames}
-                  currentPlatform={currentPlatform}
-                  handleModalClick={handleModalClick}
-                />
-              }
-            />
-          </Routes>
+              <Route
+                path=":currentPlatform"
+                element={
+                  <Platform
+                    currentPlatformGames={currentPlatformGames}
+                    currentPlatform={currentPlatform}
+                    handleModalClick={handleModalClick}
+                  />
+                }
+              />
+            </Routes>
+          )}
         </div>
       </div>
     </div>
