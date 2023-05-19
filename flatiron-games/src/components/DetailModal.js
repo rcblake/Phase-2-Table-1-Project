@@ -72,7 +72,7 @@ function DetailModal({ modalGame, handleModalClose }) {
             <strong>ESRB: {modalGame.esrb_rating.name}</strong>
           </div>
           <div>
-            <Rating onClick={onRatingChange} value={myRating} />
+            <Rating onClick={onRatingChange} initialalue={myRating} />
           </div>
           <div>
             {modalGame.short_screenshots.map((screenshot) => (
