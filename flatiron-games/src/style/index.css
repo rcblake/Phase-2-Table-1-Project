@@ -129,7 +129,6 @@ h4 {
   flex-shrink: 0;
   background-color: rgba(247, 141, 141, 0.643);
   text-align: center;
-  flex-direction: row;
 
 }
 .modalBody {

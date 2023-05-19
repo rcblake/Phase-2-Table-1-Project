@@ -65,7 +65,7 @@ function DetailModal({ modalGame, handleModalClose }) {
             <strong>
               Rating: {modalGame.rating} / {modalGame.rating_top}
             </strong>
-            <strong>ESRB: {modalGame.esrb_rating.name}</strong>
+            <strong>ESRB: {modalGame.esrb_rating?.name || "N/A"}</strong>
           </div>
           <div>
             <Rating onClick={onRatingClick} initialValue={myRating} />
