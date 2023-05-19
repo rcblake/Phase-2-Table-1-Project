@@ -10,33 +10,30 @@ function DetailModal({ modalGame, handleModalClose }) {
     fetch(`http://localhost:3000/games`)
       .then((res) => res.json())
       .then((ratings) => {
-        console.log(ratings);
         setRatingDB(ratings);
+        const existingGame = ratings.find((game) => game.id === modalGame.id);
+        setMyRating(existingGame ? `${existingGame.rating}` : 0);
       });
   }, []);
 
-  useEffect(() => {
-    const existingGame = ratingDB.find((game) => game.id === modalGame.id);
-    setMyRating(existingGame ? `${existingGame.rating}` : 0);
-  }, []);
-
-  const onRatingChange = (rate) => {
+  const onRatingClick = (rate) => {
+    console.log(rate);
     const rateNum = Number(rate);
     setMyRating(rateNum);
 
     if (ratingDB.find((game) => game.id === modalGame.id)) {
       fetch(`http://localhost:3000/games/${modalGame.id}`, {
         method: "PATCH",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ rating: myRating }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rating: rateNum }),
       })
         .then((res) => res.json())
         .then(console.log);
     } else {
       fetch(`http://localhost:3000/games/`, {
         method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ id: modalGame.id, rating: myRating }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: modalGame.id, rating: rateNum }),
       })
         .then((res) => res.json())
         .then(console.log);
@@ -46,7 +43,6 @@ function DetailModal({ modalGame, handleModalClose }) {
   const handleDetailImg = (e) => {
     setDetailImage(e.target.src);
   };
-
   return (
     <div className="modal">
       <div className="modalHeader">
@@ -72,7 +68,7 @@ function DetailModal({ modalGame, handleModalClose }) {
             <strong>ESRB: {modalGame.esrb_rating.name}</strong>
           </div>
           <div>
-            <Rating onClick={onRatingChange} initialalue={myRating} />
+            <Rating onClick={onRatingClick} initialValue={myRating} />
           </div>
           <div>
             {modalGame.short_screenshots.map((screenshot) => (
