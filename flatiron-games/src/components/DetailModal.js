@@ -1,7 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Rating } from "react-simple-star-rating";
 
 function DetailModal({ modalGame, handleModalClose }) {
   const [detailImage, setDetailImage] = useState(modalGame.background_image);
+  const [ratingDB, setRatingDB] = useState([]);
+  const [myRating, setMyRating] = useState(0);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/games`)
+      .then((res) => res.json())
+      .then(setRatingDB);
+  }, []);
+
+  const onRatingChange = (rate) => {
+    const rateNum = Number(rate);
+    setMyRating(rateNum);
+
+    if (ratingDB.find((game) => game.id === modalGame.id)) {
+      fetch(`http://localhost:3000/games/${modalGame.id}`, {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ rating: rateNum }),
+      })
+        .then((res) => res.json())
+        .then(console.log);
+    } else {
+      fetch(`http://localhost:3000/games/`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: modalGame.id, rating: rateNum }),
+      })
+        .then((res) => res.json())
+        .then(console.log);
+    }
+  };
 
   const handleDetailImg = (e) => {
     setDetailImage(e.target.src);
@@ -32,7 +64,9 @@ function DetailModal({ modalGame, handleModalClose }) {
             </strong>
             <strong>ESRB: {modalGame.esrb_rating.name}</strong>
           </div>
-          <div>My Rating</div>
+          <div>
+            <Rating onClick={onRatingChange} />
+          </div>
           <div>
             {modalGame.short_screenshots.map((screenshot) => (
               <img
