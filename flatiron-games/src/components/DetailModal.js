@@ -9,7 +9,15 @@ function DetailModal({ modalGame, handleModalClose }) {
   useEffect(() => {
     fetch(`http://localhost:3000/games`)
       .then((res) => res.json())
-      .then(setRatingDB);
+      .then((ratings) => {
+        console.log(ratings);
+        setRatingDB(ratings);
+      });
+  }, []);
+
+  useEffect(() => {
+    const existingGame = ratingDB.find((game) => game.id === modalGame.id);
+    setMyRating(existingGame ? `${existingGame.rating}` : 0);
   }, []);
 
   const onRatingChange = (rate) => {
@@ -20,7 +28,7 @@ function DetailModal({ modalGame, handleModalClose }) {
       fetch(`http://localhost:3000/games/${modalGame.id}`, {
         method: "PATCH",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ rating: rateNum }),
+        body: JSON.stringify({ rating: myRating }),
       })
         .then((res) => res.json())
         .then(console.log);
@@ -28,7 +36,7 @@ function DetailModal({ modalGame, handleModalClose }) {
       fetch(`http://localhost:3000/games/`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ id: modalGame.id, rating: rateNum }),
+        body: JSON.stringify({ id: modalGame.id, rating: myRating }),
       })
         .then((res) => res.json())
         .then(console.log);
@@ -59,13 +67,12 @@ function DetailModal({ modalGame, handleModalClose }) {
             ))}
             <strong>Released: {modalGame.released.slice(0, 4)}</strong>
             <strong>
-              Rating:
-              {modalGame.rating} / {modalGame.rating_top}
+              Rating: {modalGame.rating} / {modalGame.rating_top}
             </strong>
             <strong>ESRB: {modalGame.esrb_rating.name}</strong>
           </div>
           <div>
-            <Rating onClick={onRatingChange} />
+            <Rating onClick={onRatingChange} value={myRating} />
           </div>
           <div>
             {modalGame.short_screenshots.map((screenshot) => (
