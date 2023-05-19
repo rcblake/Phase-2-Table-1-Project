@@ -12,7 +12,6 @@ function NavBar({ onNavLinkClick }) {
         <NavLink onClick={handleNavLinkClick} className="homeNav" to="/home">
           Home
         </NavLink>
-        <h3>Platforms</h3>
         <ol>
           <NavLink
             onClick={handleNavLinkClick}

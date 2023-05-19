@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 
-function GameCard({ game, handleDetailClick }) {
+function GameCard({ game, handleModalClick }) {
   const [starAmount, setStarAmount] = useState(game.rating);
 
   function handleRatingClick(nextValue) {
@@ -32,6 +32,7 @@ fetch('http://localhost:3000/games', {
   }
   
 
+
   return (
     <div className="card">
       <h4 className="gameName">{game.name}</h4>
@@ -51,10 +52,8 @@ fetch('http://localhost:3000/games', {
       {game.parent_platforms.slice(0, 4).map((platform) => (
         <p key={platform.platform.id}>{platform.platform.name}</p>
       ))}
-      <button
-        className="detailButton"
-        onClick={() => handleDetailClick(game)}
-      >
+
+      <button className="detailButton" onClick={() => handleModalClick(game)}>
         Details
       </button>
     </div>
