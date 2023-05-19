@@ -60,7 +60,6 @@ function App() {
       .then((res) => res.json())
       .then((res) => setCurrentPlatformGames(res.results));
   };
-  console.log(modalGame);
   return (
     <div className="app">
       <div className="fullpage-left">

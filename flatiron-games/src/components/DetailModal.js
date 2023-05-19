@@ -8,35 +8,44 @@ function DetailModal({ modalGame, handleModalClose }) {
   };
 
   return (
-    <div class="modal">
+    <div className="modal">
       <div className="modalHeader">
         <h2>{modalGame.name}</h2>
+        <button onClick={handleModalClose}>close</button>
       </div>
       <div className="modalBody">
-        <img class="modalMainImage" src={detailImage} alt={modalGame.name} />
-        <div class="modalText">
-          <h4>Genres 2 Max</h4>
-          <h4>Release Year</h4>
-          <h4>
-            {modalGame.rating} / {modalGame.rating_top}
-            &#11088
-          </h4>
-          <h4>ESRB</h4>
+        <img
+          className="modalMainImage"
+          src={detailImage}
+          alt={modalGame.name}
+        />
+        <div className="modalRight">
+          <div className="modalText">
+            <strong>Genre: </strong>
+            {modalGame.genres.map((genre) => (
+              <strong key={genre.id}>{genre.name}</strong>
+            ))}
+            <strong>Released: {modalGame.released.slice(0, 4)}</strong>
+            <strong>
+              Rating:
+              {modalGame.rating} / {modalGame.rating_top}
+            </strong>
+            <strong>ESRB: {modalGame.esrb_rating.name}</strong>
+          </div>
           <div>My Rating</div>
+          <div>
+            {modalGame.short_screenshots.map((screenshot) => (
+              <img
+                key={screenshot.id}
+                className="modalScreenShots"
+                src={screenshot.image}
+                alt="gameplay screenshot"
+                onClick={handleDetailImg}
+              />
+            ))}
+          </div>
         </div>
       </div>
-
-      <div>
-        {modalGame.short_screenshots.map((screenshot) => (
-          <img
-            className="modalScreenShots"
-            src={screenshot.image}
-            alt="gameplay screenshot"
-            onClick={handleDetailImg}
-          />
-        ))}
-      </div>
-      <button onClick={handleModalClose}>close</button>
     </div>
   );
 }
