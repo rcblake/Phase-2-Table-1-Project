@@ -1,46 +1,52 @@
 import { useState } from "react";
 
-function DetailPage({ game, handleDetailClose }) {
-  const [detailImage, setDetailImage] = useState(game.background_image);
+function DetailModal({ modalGame, handleModalClose }) {
+  const [detailImage, setDetailImage] = useState(modalGame.background_image);
 
   const handleDetailImg = (e) => {
     setDetailImage(e.target.src);
   };
 
   return (
-    <div>
-      <div class="detailTitle">
-        <h2>{game.name}</h2>
+    <div className="modal">
+      <div className="modalHeader">
+        <h2>{modalGame.name}</h2>
+        <button onClick={handleModalClose}>close</button>
       </div>
-      <div>
-        <h4>Genres 2 Max</h4>
-        <h4>Release Year</h4>
-        <h4>
-          {game.rating} / {game.rating_top}
-          &#11088
-        </h4>
-        <h4>ESRB</h4>
-      </div>
-      <button>Add to Favorites</button>
-      <img src={detailImage} alt={game.name} />
-      <div>My Rating</div>
-
-      <div>
+      <div className="modalBody">
         <img
-          src={game.background_image}
-          alt="gameplay screenshot"
-          onClick={handleDetailImg}
+          className="modalMainImage"
+          src={detailImage}
+          alt={modalGame.name}
         />
-        {/* {game.short_screenshots.map((screenshot) => (
-          <img
-            src={screenshot.image}
-            alt="gameplay screenshot"
-            onClick={handleDetailImg}
-          />
-        ))} */}
+        <div className="modalRight">
+          <div className="modalText">
+            <strong>Genre: </strong>
+            {modalGame.genres.map((genre) => (
+              <strong key={genre.id}>{genre.name}</strong>
+            ))}
+            <strong>Released: {modalGame.released.slice(0, 4)}</strong>
+            <strong>
+              Rating:
+              {modalGame.rating} / {modalGame.rating_top}
+            </strong>
+            <strong>ESRB: {modalGame.esrb_rating.name}</strong>
+          </div>
+          <div>My Rating</div>
+          <div>
+            {modalGame.short_screenshots.map((screenshot) => (
+              <img
+                key={screenshot.id}
+                className="modalScreenShots"
+                src={screenshot.image}
+                alt="gameplay screenshot"
+                onClick={handleDetailImg}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-      <button>close</button>
     </div>
   );
 }
-export default DetailPage;
+export default DetailModal;
