@@ -10,6 +10,7 @@ import SearchResults from "./components/SearchResults";
 import Platform from "./components/Platform";
 // import DetailModal from "./components/DetailModal";
 
+
 function App() {
   const [games, setGames] = useState([]);
   // const [detailGame, setDetailGame] = useState(null);
