@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+# Project Name: Flatiron Games
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This project is a gaming website that allows users to browse and search for games, view platform-specific games, and explore various gaming-related content. The website is built using React and utilizes the RAWG Video Games Database API to fetch game data and provide an immersive gaming experience.
 
-## Available Scripts
+## Components and Functionality
 
-In the project directory, you can run:
+### NavBar Component
+The NavBar component provides navigation links to different sections of the website. It allows users to switch between sections such as home, search, and platform-specific games. Clicking on a navigation link triggers the `onNavLinkClick` function, which fetches games based on the selected platform and updates the `currentPlatformGames` state.
 
-### `npm start`
+### Header Component
+The Header component displays a visually appealing header section on the website. It serves as a visual introduction to the website and may include elements such as a title, slogan, or background image.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Home Component
+The Home component is responsible for displaying a collection of games on the home page. It receives the `games` state as a prop and showcases a selection of games to the user. This component can be customized to display featured games, recently released games, or any other desired game selection.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### SearchBar Component
+The SearchBar component allows users to search for specific games by entering a search term. When the user types a search query and submits it, the `handleSearch` function is called. It makes a request to the RAWG API with the search term and updates the `searchedGames` state with the search results.
 
-### `npm test`
+### SearchResults Component
+The SearchResults component displays the results of a game search. It receives the `searchedGames` state as a prop and renders a list of games based on the search query. Users can view details about a particular game by clicking on the game's entry in the search results.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Platform Component
+The Platform component displays games specific to a selected platform. It receives the `currentPlatformGames` and `currentPlatform` states as props and renders a list of games for the chosen platform. The `onNavLinkClick` function triggers a fetch request to the RAWG API, retrieving games based on the selected platform ID and updating the `currentPlatformGames` state.
 
-### `npm run build`
+### App Component
+The App component serves as the main entry point for the website. It manages the application's state, including `games`, `searchedGames`, `currentPlatformGames`, and `currentPlatform`. The `useEffect` hook is used to fetch the initial list of games from the RAWG API. The `handleSearch` function allows users to search for games, while the `onNavLinkClick` function fetches games for a specific platform. The component structure and routing are defined using the `Routes` and `Route` components from the `react-router-dom` library.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation and Setup
+To run the gaming website locally or deploy it on a server, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone the project repository from [GitHub](https://github.com/your-repo-url).
+2. Install the necessary dependencies by running `npm install`.
+3. Obtain an API key from the RAWG Video Games Database API and replace `APIKey` in the code with your actual API key.
+4. Start the development server by running `npm start`.
+5. Access the website by opening it in a web browser using the provided URL.
+6. Have Fun Searching!
